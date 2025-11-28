@@ -25,7 +25,6 @@ spec:
           value: mongoadmin
         - name: MONGO_INITDB_ROOT_PASSWORD
           value: secret
-        resource:
       volumes:
       - name: mongo-data
         persistentVolumeClaim:
