@@ -11,7 +11,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - host: nileshfatfatwale.dev
+  - host: chatapp.nileshfatfatwale.dev
     http:
       paths:
       - pathType: Prefix
