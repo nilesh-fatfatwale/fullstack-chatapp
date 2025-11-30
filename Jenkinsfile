@@ -3,6 +3,10 @@
 pipeline {
     agent any
     
+    environment{
+        SONAR_HOME = tool "Sonar"
+    }
+
     parameters {
         string(name: 'Fullstack_Backend_Tag', defaultValue: 'latest', description: 'docker image tag for Fullstack_Backend')
         string(name: 'Fullstack_Frontend_Tag', defaultValue: 'latest', description: 'docker image tag Fullstack_Frontend')
@@ -31,6 +35,22 @@ pipeline {
             steps {
                 git url: "https://github.com/nilesh-fatfatwale/fullstack-chatapp.git",
                 branch: "main"
+            }
+        }
+
+        stage("SonarQube: Code Analysis"){
+            steps{
+                script{
+                    sonarqube_analysis("Sonar","fullstack-chatapp","fullstack-chatapp")
+                }
+            }
+        }
+        
+        stage("SonarQube: Code Quality Gates"){
+            steps{
+                script{
+                    sonarqube_code_quality()
+                }
             }
         }
 
