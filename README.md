@@ -94,6 +94,8 @@ terraform apply --auto-approve
 ```
 it will takes 20-30 minutes to create the infrastructure
 
+<img width="1426" height="200" alt="image" src="https://github.com/user-attachments/assets/b93dede6-abb7-4ed9-bb56-b2fef2de7d02" />
+
 2] Building an CICD pipeline for building docker image and push to dockerHub 
 1. Install Java and Jenkins and docker on bastinhost server
 ```
@@ -121,6 +123,9 @@ go to this location `var/lib/Jenkins\secrets\initialAdminPassword`
 ```
 cat var/lib/Jenkins\secrets\initialAdminPassword
 ```
+<img width="1423" height="202" alt="image" src="https://github.com/user-attachments/assets/94b308c9-ad4e-4295-b613-fbf5d0eb0c35" />
+<img width="3072" height="1632" alt="Screenshot from 2025-11-30 19-41-52" src="https://github.com/user-attachments/assets/1762f0c2-f30a-485e-b097-007839857548" />
+
 1. Steps to implement the project:
 - Go to Jenkins Master and click on Manage Jenkins --> Plugins --> Available plugins install the below plugins:
 -- OWASP
@@ -131,7 +136,20 @@ cat var/lib/Jenkins\secrets\initialAdminPassword
 
 3. Credential setup --> github,docker-hub,gmail,sonarqube token
 
-4. create a new pipeline for docker build and push to docker hub
+<img width="3072" height="1632" alt="Screenshot from 2025-11-30 20-27-12" src="https://github.com/user-attachments/assets/1fbbec9f-632e-4ffc-a66e-b7a473d96c38" />
+
+
+5. setup shared library
+ <img width="3072" height="1632" alt="Screenshot from 2025-11-30 20-11-13" src="https://github.com/user-attachments/assets/03c0f125-d0eb-442a-8993-7511796ffbdb" />
+ <img width="3072" height="1632" alt="Screenshot from 2025-11-30 20-11-20" src="https://github.com/user-attachments/assets/94789945-803c-40b4-b793-1dba5a0c7af4" /
+
+6. OWASP Dependency Setup
+<img width="3072" height="1632" alt="Screenshot from 2025-11-30 20-16-35" src="https://github.com/user-attachments/assets/0422fff3-2f4d-4ff1-b1ed-9eb269750b4f" />
+
+7. Sonarqube Setup : Run a docker image
+ <img width="3072" height="1632" alt="Screenshot from 2025-11-30 20-26-16" src="https://github.com/user-attachments/assets/31c781a7-e917-40ab-9956-def0c7a7dcdb" />
+
+5. create a new pipeline for docker build and push to docker hub
   
 ## Kubernetes & Argocd:
 1. Install AWS Cli
@@ -189,6 +207,8 @@ sudo chmod +x /usr/local/bin/argocd
 ```
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 ```
+<img width="2740" height="1512" alt="Screenshot from 2025-12-02 15-44-46" src="https://github.com/user-attachments/assets/a8bf1810-3ba7-41d0-a875-3784e07e6b57" />
+
  9) Confirm service is patched or not
 ```
 kubectl get svc -n argocd
@@ -198,6 +218,8 @@ kubectl get svc -n argocd
 ```
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 ```
+<img width="2740" height="1512" alt="Screenshot from 2025-12-02 15-47-37" src="https://github.com/user-attachments/assets/9b680ceb-dffb-439a-9ec6-33f6aac901c3" />
+
 Username: admin
 Now, go to User Info and update your argocd password
 
@@ -206,11 +228,21 @@ Now, go to User Info and update your argocd password
 ```
 argocd login <dns/ip:portnumber> --username admin
 ```
+<img width="2740" height="1512" alt="Screenshot from 2025-12-02 15-51-11" src="https://github.com/user-attachments/assets/fc4c5361-06e3-465e-b695-3bcb2a566612" />
+
 14) `argocd cluster list`
 15) `kubectl config get-contexts`
 16) `argocd cluster add <> --name fullstack_chatapp`
 17) setup github repo
-18) setup  application on argocd
+18) cluster setup
+  <img width="3072" height="1632" alt="Screenshot from 2025-12-01 00-18-04" src="https://github.com/user-attachments/assets/693f340e-feb0-444d-83b6-a634ce7a6ed2" />
+  <img width="2740" height="1512" alt="Screenshot from 2025-12-02 15-53-00" src="https://github.com/user-attachments/assets/bfe203b5-f342-425a-b6a9-f0401e59a6c4" />
+
+
+20) setup  application on argocd
+<img width="3072" height="1632" alt="Screenshot from 2025-12-02 15-54-01" src="https://github.com/user-attachments/assets/efc6bf1a-3a6c-42d0-af6f-39b8f44c0415" />
+<img width="3072" height="1632" alt="Screenshot from 2025-12-02 15-55-13" src="https://github.com/user-attachments/assets/658d1605-1bea-4533-87ac-87e4a4622a41" />
+
 
 ## EKS Monitoring :
 1. Install Helm Chart
@@ -252,6 +284,8 @@ kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus
 ```
 kubectl get svc -n prometheus
 ```
+<img width="2740" height="1512" alt="Screenshot from 2025-12-02 16-59-38" src="https://github.com/user-attachments/assets/1f7896b2-9745-4641-bce3-8de79824786e" />
+
 9. Now,let’s change the SVC file of the Grafana and expose it to the outer world
 ```
 kubectl edit svc stable-grafana -n prometheus
@@ -264,10 +298,28 @@ kubectl get svc -n prometheus
 ```
 kubectl get secret --namespace prometheus stable-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 ```
+<img width="1705" height="898" alt="image" src="https://github.com/user-attachments/assets/b3244744-aa66-4416-8331-63f5d967f277" />
+
+
+<img width="3072" height="1632" alt="Screenshot from 2025-12-02 17-15-33" src="https://github.com/user-attachments/assets/a68508c4-a97a-4c18-8af1-834daf3bb620" />
+<img width="1705" height="898" alt="image" src="https://github.com/user-attachments/assets/348569f8-9dca-4ee8-8d69-913399e64314" />
+<img width="1705" height="898" alt="image" src="https://github.com/user-attachments/assets/92a572df-7c46-4935-8a9d-6784e61d9f70" />
+
+
 ## Clean Up:
 ```
 terraform destroy --aut0-approve
 ```
+<img width="3072" height="1632" alt="Screenshot from 2025-12-01 00-36-39" src="https://github.com/user-attachments/assets/f4017c17-f6b3-415d-9ca6-519e12ca4c12" />
+
+<img width="3072" height="1632" alt="Screenshot from 2025-11-30 21-33-45" src="https://github.com/user-attachments/assets/7800cfee-aebb-407c-b043-47e2f47d2fe6" />
+<img width="1705" height="898" alt="image" src="https://github.com/user-attachments/assets/d38e6edf-7eb0-4fc8-a025-91a59cd4ede8" />
+
+
+<img width="3072" height="1632" alt="Screenshot from 2025-11-30 21-05-52" src="https://github.com/user-attachments/assets/caa41a3a-0eb6-44b0-900d-7ca57c7812d1" />
+<img width="1705" height="898" alt="image" src="https://github.com/user-attachments/assets/cab58393-02e5-42dc-9d59-0ef75f7d7183" />
+
+<img width="1705" height="898" alt="image" src="https://github.com/user-attachments/assets/2e58cbff-28d8-4ffc-941f-f715ea00fae9" />
 
 
 
