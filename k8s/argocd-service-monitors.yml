@@ -32,12 +32,15 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor                 
 metadata:
   name: argocd-repo-server-metrics   
-  namespace: argocd                  
+  namespace: monitoring                  
   labels:
     release: kube-prometheus-stack   
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: argocd-repo-server 
+      app: chat-backend            # service label
+  namespaceSelector:
+    matchNames:
+      - chat-app
   endpoints:
   - port: metrics                    
