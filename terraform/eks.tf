@@ -24,7 +24,7 @@ resource "aws_security_group" "node_group_remote_access" {
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 20.0"
-  cluster_name    = "fullstack_chatapp"
+  cluster_name    = "fullstackchatapp"
   cluster_version = "1.31"
 
   cluster_endpoint_public_access  = true
