@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: chatapp-frontend
-        image: nileshfatfatwale/fullstack-chatapp-frontend:v1.0.0
+        image: 661596277003.dkr.ecr.us-east-1.amazonaws.com/chatapp-frontend:v1.0.0
         ports:
         - containerPort: 80
         env:

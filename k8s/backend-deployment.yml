@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: chatapp-backend
-        image: nileshfatfatwale/fullstack-chatapp-backend:v1.0.0
+        image: 661596277003.dkr.ecr.us-east-1.amazonaws.com/chatapp-backend:v1.0.0
         ports:
         - containerPort: 5001
         env:
@@ -32,7 +32,7 @@ spec:
               key: jwt 
         - name: PORT
           value: "5001"
-          
+
 ---
 apiVersion: v1
 kind: Service
