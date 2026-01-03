@@ -4,16 +4,15 @@ metadata:
   name: monitoring-ingress
   namespace: monitoring
   annotations:
-    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:661596277003:certificate/249fa641-f5b4-48f2-9049-dca25afc0686
+    alb.ingress.kubernetes.io/group.name: "nilesh-alb"
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
 spec:
-  ingressClassName: nginx
-  tls:
-  - hosts:
-    - prometheus.nileshfatfatwale.dev
-    - grafana.nileshfatfatwale.dev
-    secretName: monitoring-tls
+  ingressClassName: alb
   rules:
   - host: prometheus.nileshfatfatwale.dev
     http:

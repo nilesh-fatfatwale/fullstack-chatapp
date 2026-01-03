@@ -17,11 +17,23 @@ spec:
     spec:
       containers:
       - name: chatapp-frontend
-        image: nileshfatfatwale/fullstack-chatapp-frontend:1.0
+        image: nileshfatfatwale/fullstack-chatapp-frontend:v1.0.0
         ports:
         - containerPort: 80
         env:
         - name: NODE_ENV
           value: production
 
+---
 
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: chat-app
+spec:
+  selector:
+    app: frontend
+  ports:
+  - port: 80
+    targetPort: 80

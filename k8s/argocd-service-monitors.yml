@@ -38,7 +38,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: chat-backend            # service label
+      app: chat-backend            
   namespaceSelector:
     matchNames:
       - chat-app
